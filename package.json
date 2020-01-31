@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "Sreelal Nampoothiri <sreelalhn@gmail.com>",
   "scripts": {
-    "start":"node -r esm src/storm_jsonrpc.js",	 
+    "start":"node -r esm src/storm_jsonrpc.js",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix",
     "postinstall": "(test -e testcases/Storm-Testcases || git clone https://github.com/WebPlatformForEmbedded/Storm-Testcases.git testcases/Storm-Testcases)"
@@ -28,14 +28,9 @@
   },
   "homepage": "https://github.com/WebPlatformForEmbedded/Storm-JSONRPC#readme",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "contra": "^1.9.4",
     "esm": "^3.2.22",
     "http-jsonrpc-server": "^1.1.0",
-    "inquirer": "^6.3.1",
-    "inquirer-checkbox-plus-prompt": "^1.0.1",
     "log-update": "^3.2.0",
-    "moment": "^2.24.0",
     "storm": "github:WebPlatformForEmbedded/Storm"
   },
   "devDependencies": {
