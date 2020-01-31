@@ -33,7 +33,7 @@ function getTestcasePath(dirPath, testCase, arrayOfFiles) {
 
 // To start the test case execution
 function execute_testcase(params) {
-
+    process.chdir(__dirname); 
     var log_dir = './logs';
     if (!fs.existsSync(log_dir))
     {
