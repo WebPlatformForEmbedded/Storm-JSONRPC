@@ -1,0 +1,46 @@
+{
+  "name": "storm-jsonrpc",
+  "version": "0.0.1",
+  "author": "Sreelal Nampoothiri <sreelalhn@gmail.com>",
+  "scripts": {
+    "start":"node -r esm src/storm_jsonrpc.js",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix",
+    "postinstall": "(test -e testcases/Storm-Testcases || git clone https://github.com/WebPlatformForEmbedded/Storm-Testcases.git testcases/Storm-Testcases)"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebPlatformForEmbedded/Storm-JSONRPC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebPlatformForEmbedded/Storm-JSONRPC/issues"
+  },
+  "homepage": "https://github.com/WebPlatformForEmbedded/Storm-JSONRPC#readme",
+  "dependencies": {
+    "esm": "^3.2.22",
+    "http-jsonrpc-server": "^1.1.0",
+    "log-update": "^3.2.0",
+    "storm": "github:WebPlatformForEmbedded/Storm"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^5.2.2",
+    "husky": "^2.1.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0"
+  }
+}
