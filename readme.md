@@ -21,7 +21,7 @@ For executing test using curl command follow below steps
 
 Request Type :POST
 Sample command:
- curl --request POST --header 'Content-type: application/json' --header 'Accept: application/json' --data '{"jsonrpc":"2.0","id":1,"method":"execute_testcase","params":{"test":"thunder-controller-duplicate.test.js","execid":"RPI_Storm-20200103095005","device":{"host":"192.168.0.10"}}}' http://127.0.0.1:9099/storm-jsonrpc
+ curl --request POST --header 'Content-type: application/json' --header 'Accept: application/json' --data '{"jsonrpc":"2.0","id":1,"method":"execute_testcase","params":{"test":"thunder-controller-duplicate.test.js","execid":"RPI_Storm-20200103095005","device":{"host":"192.168.0.10"}}}' http://127.0.0.1:9091/storm-jsonrpc
  
  
 JSON message details 

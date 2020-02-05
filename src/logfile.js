@@ -21,7 +21,10 @@ return {
         writeFile(data, testCaseLogFile, serverLogFile)
   },
   log() {
-	var data ='    ' + [...arguments]
+	var data =['  ', ...arguments]
+        data = JSON.stringify(data);
+        data = data.substring(data.indexOf(',')+1).split(']')
+        data = '    ' + data[0]
         writeFile(data, testCaseLogFile, serverLogFile)
   },
   sleep(milliseconds) {
