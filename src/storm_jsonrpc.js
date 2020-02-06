@@ -37,7 +37,8 @@ function execute_testcase(params) {
     var log_dir = './logs';
     if (!fs.existsSync(log_dir))
     {
-        fs.mkdirSync(log_dir);
+        //Modified for solving permission issue while writing logs
+        fs.mkdirSync(log_dir,'766');
     }
     testCasePath = ""
     const testCase = params.test
@@ -117,6 +118,6 @@ const rpcServer = new RpcServer({
     rpcServer.setMethod('stopRpcServer',stop_rpcserver);
        
     rpcServer.listen(9091, '127.0.0.1').then(() => {
-		          console.log('JSON RPC server is listening at http://:127.0.0.1:9091/storm-jsonrpc');
+		          console.log('JSON RPC server is listening at http://127.0.0.1:9091/storm-jsonrpc');
 	
 });
