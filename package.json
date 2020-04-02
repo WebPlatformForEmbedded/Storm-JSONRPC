@@ -6,7 +6,7 @@
     "start":"node -r esm src/storm_jsonrpc.js",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix",
-    "postinstall": "(test -e testcases/Storm-Testcases || git clone https://github.com/WebPlatformForEmbedded/Storm-Testcases.git testcases/Storm-Testcases)"
+    "postinstall": "(test -e testcases/Storm-Testcases || git clone https://github.com/WebPlatformForEmbedded/Storm-Testcases.git testcases/Storm-Testcases && cd testcases/Storm-Testcases && npm install)"
   },
   "lint-staged": {
     "*.js": [
