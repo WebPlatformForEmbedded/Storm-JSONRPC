@@ -1,55 +1,46 @@
 import fs from 'fs'
-import path from 'path'
 
 function writeFile(data, testCaseLogFile, serverLogFile) {
-    fs.appendFile(testCaseLogFile, data+'\n', (err) => {
-	                    if (err) throw err;
-    });
-    process.stdout.write = process.stderr.write = serverLogFile.write.bind(serverLogFile);
+  fs.appendFile(testCaseLogFile, data + '\n', err => {
+    if (err) throw err
+  })
+  process.stdout.write = process.stderr.write = serverLogFile.write.bind(serverLogFile)
 }
 
-export default (testCaseLog, stormJsonrpcLog) =>{
-var testCaseLogFile = testCaseLog;
-var serverLogFile = stormJsonrpcLog;
-return {
-  init(test) {
-        var data = 'Starting test `' + test.title + '`'
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  step(test, step) {
-        var data = 'Starting step `' + step.description + '`'
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  log() {
-	var data =['  ', ...arguments]
-        data = JSON.stringify(data);
-        data = data.substring(data.indexOf(',')+1).split(']')
-        data = '    ' + data[0]
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  sleep(milliseconds) {
-	var data = 'Sleeping for ' + milliseconds / 1000 + ' seconds'
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  pass(test, step) {
-	var data ='Step `' + step.description + '` passed'
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  fail(test, step, err) {
-	var data ='Step  `' + step.description + '` failed ' + err
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  success(test) {
-	var data = 'Success ' + test.title
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  error(test, err) {
-	var data = 'Error ' + test.title + err
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-  finished(test) {
-	var data = 'Test ' + test.title + ' finished running'
-        writeFile(data, testCaseLogFile, serverLogFile)
-  },
-}
+export default (testCaseLog, stormJsonrpcLog) => {
+  let testCaseLogFile = testCaseLog
+  let serverLogFile = stormJsonrpcLog
+  return {
+    init(test) {
+      writeFile('Starting test `' + test.title + '`', testCaseLogFile, serverLogFile)
+    },
+    step(test, step) {
+      writeFile('Starting step `' + step.description + '`', testCaseLogFile, serverLogFile)
+    },
+    log() {
+      let data = ['  ', ...arguments]
+      data = JSON.stringify(data)
+      data = data.substring(data.indexOf(',') + 1).split(']')
+      data = '    ' + data[0]
+      writeFile(data, testCaseLogFile, serverLogFile)
+    },
+    sleep(milliseconds) {
+      writeFile('Sleeping for ' + milliseconds / 1000 + ' seconds', testCaseLogFile, serverLogFile)
+    },
+    pass(test, step) {
+      writeFile('Step `' + step.description + '` passed', testCaseLogFile, serverLogFile)
+    },
+    fail(test, step, err) {
+      writeFile('Step  `' + step.description + '` failed ' + err, testCaseLogFile, serverLogFile)
+    },
+    success(test) {
+      writeFile('Success ' + test.title, testCaseLogFile, serverLogFile)
+    },
+    error(test, err) {
+      writeFile('Error ' + test.title + err, testCaseLogFile, serverLogFile)
+    },
+    finished(test) {
+      writeFile('Test ' + test.title + ' finished running', testCaseLogFile, serverLogFile)
+    },
+  }
 }
